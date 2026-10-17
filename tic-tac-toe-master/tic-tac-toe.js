@@ -1,7 +1,17 @@
 let elements = [];
 let elementPositions = [];
+const winningLines = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
-function loadGame() {
+window.onload = function loadGame() {
   const board = document.querySelector("#board");
   if (board) {
     const squares = board.querySelectorAll("*");
@@ -31,7 +41,32 @@ function loadGame() {
           square.classList.add("X");
           elementPositions.push(key);
         }
+
+        const currentBoard = [];
+        elements.forEach((element, index) => {
+          const boardIndex = elementPositions[index];
+          currentBoard[boardIndex] = elements[index];
+        });
+
+        winningLines.forEach((lane) => {
+          if (
+            currentBoard[lane[0]] === "X" &&
+            currentBoard[lane[1]] === "X" &&
+            currentBoard[lane[2]] === "X"
+          ) {
+            console.log("X is the Winner");
+          } else if (
+            currentBoard[lane[0]] === "O" &&
+            currentBoard[lane[1]] === "O" &&
+            currentBoard[lane[2]] === "O"
+          ) {
+            console.log("O is the winner");
+          }
+        });
+
+        console.log("elements array", elements);
+        console.log("element positions array", elementPositions);
       });
     });
   }
-}
+};
