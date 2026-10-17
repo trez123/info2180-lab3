@@ -67,6 +67,12 @@ window.onload = function loadGame() {
         console.log("elements array", elements);
         console.log("element positions array", elementPositions);
       });
+      square.addEventListener("mouseenter", () => {
+        square.classList.add("hover");
+      });
+      square.addEventListener("mouseleave", () => {
+        square.classList.remove("hover");
+      });
     });
   }
 };
