@@ -13,6 +13,7 @@ const winningLines = [
 
 window.onload = function loadGame() {
   const board = document.querySelector("#board");
+  const status = document.querySelector("#status");
   if (board) {
     const squares = board.querySelectorAll("*");
     squares.forEach((square, key) => {
@@ -47,7 +48,6 @@ window.onload = function loadGame() {
           const boardIndex = elementPositions[index];
           currentBoard[boardIndex] = elements[index];
         });
-        const status = document.querySelector("#status");
 
         winningLines.forEach((lane) => {
           if (
@@ -77,6 +77,19 @@ window.onload = function loadGame() {
       });
       square.addEventListener("mouseleave", () => {
         square.classList.remove("hover");
+      });
+
+      const newGameButton = document.querySelector(".btn");
+
+      newGameButton.addEventListener("click", () => {
+        square.textContent = "";
+        square.classList.remove("O");
+        square.classList.remove("X");
+        elements = [];
+        elementPositions = [];
+        status.textContent =
+          "Move your mouse over a square and click to play an X or an O.";
+        status.classList.remove("you-won");
       });
     });
   }
