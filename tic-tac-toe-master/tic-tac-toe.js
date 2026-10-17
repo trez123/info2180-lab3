@@ -47,6 +47,7 @@ window.onload = function loadGame() {
           const boardIndex = elementPositions[index];
           currentBoard[boardIndex] = elements[index];
         });
+        const status = document.querySelector("#status");
 
         winningLines.forEach((lane) => {
           if (
@@ -55,12 +56,16 @@ window.onload = function loadGame() {
             currentBoard[lane[2]] === "X"
           ) {
             console.log("X is the Winner");
+            status.textContent = "Congratulations! X is the Winner!";
+            status.classList.add("you-won");
           } else if (
             currentBoard[lane[0]] === "O" &&
             currentBoard[lane[1]] === "O" &&
             currentBoard[lane[2]] === "O"
           ) {
             console.log("O is the winner");
+            status.textContent = "Congratulations! O is the Winner!";
+            status.classList.add("you-won");
           }
         });
 
